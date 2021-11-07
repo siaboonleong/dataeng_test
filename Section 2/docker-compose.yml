@@ -1,0 +1,14 @@
+postgres:
+  image: 'postgres:11-alpine'
+  user: postgres
+  container_name: postgres-container-store_test
+  ports:
+      - 55432:5432/tcp
+  environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: password
+  volumes:
+    - /var/lib/postgres
+    - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
